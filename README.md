@@ -1,7 +1,7 @@
-Markdown# Paris Traffic Volume Prediction (AADT) 🚗💨
+
 **Machine Learning Zoomcamp - Midterm Project**
 
-## 📋 Description of the Problem
+##  Description of the Problem
 Predicting urban traffic volume is crucial for city planning, reducing congestion, and optimizing public transit routes. This project builds an end-to-end Machine Learning web service to predict Annual Average Daily Traffic (`AADT`) for street segments in Paris. Using geographic and road attribute features (such as number of lanes, maximum speed, and OpenStreetMap road types), the model accurately estimates traffic density.
 
 ---
@@ -40,7 +40,7 @@ The server will run on http://localhost:9696.4. Test the Local EndpointIn a sepa
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri "http://localhost:9696/predict" -Method Post -Body $body -ContentType "application/json"
-🐳 Running with Docker (Deployment)To ensure complete environment reproducibility, you can containerize and run the application using Docker.
+-- Running with Docker (Deployment)To ensure complete environment reproducibility, you can containerize and run the application using Docker.
 1. Build the Docker ImageMake sure Docker Desktop is running, then build the image:Bashdocker build -t paris-traffic-model .
 2. Run the ContainerBashdocker run -it --rm -p 9696:9696 paris-traffic-model
-🖼️ Deployment Interaction ProofHere is the interaction screenshot showing the Flask API running locally inside the Docker container and responding successfully to incoming prediction requests:
+-- Deployment Interaction ProofHere is the interaction screenshot showing the Flask API running locally inside the Docker container and responding successfully to incoming prediction requests:
