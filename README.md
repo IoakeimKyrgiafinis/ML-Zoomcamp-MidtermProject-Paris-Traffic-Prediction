@@ -4,6 +4,7 @@
 ##  Description of the Problem
 Predicting urban traffic volume is crucial for city planning, reducing congestion, and optimizing public transit routes. This project builds an end-to-end Machine Learning web service to predict Annual Average Daily Traffic (`AADT`) for street segments in Paris. Using geographic and road attribute features (such as number of lanes, maximum speed, and OpenStreetMap road types), the model accurately estimates traffic density.
 
+
 ---
 
 ## 🗂️ Project Structure
@@ -17,7 +18,11 @@ ZoomcampMidtermproject/
 ├── requirements.txt          # Python dependencies
 ├── deployment_screenshot.png # Evidence of local Docker deployment & interaction
 └── README.md                 # Project documentation
-📊 Dataset & InstructionsDataset Source: The project utilizes the Paris treated traffic GeoJSON dataset (Paris_AADT_AAWT_2023.geojson) sourced from the open-source European cities traffic repository.   Automatic Download: Both the notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.🛠️ Models & Validation SummaryBaseline Model: Linear RegressionFinal Model: Random Forest Regressor (max_depth=10, min_samples_leaf=10, n_estimators=100)Evaluation Metric: Root Mean Squared Error (RMSE)Final Test Performance: Test RMSE of ~7,437🚀 Instructions on How to Run the Project1. Install DependenciesClone the repository and install the required packages:Bashpip install -r requirements.txt
+📊The dataset used in this project is the Paris treated traffic GeoJSON dataset (2023) (Paris_AADT_AAWT_2023.geojson).   It was sourced directly from the open-source GitHub repository traffic-volume-data-EU-cities maintained by XavB64. This dataset contains standardized street-segment traffic metrics for Paris, including Annual Average Daily Traffic (AADT), Annual Average Weekly Traffic (AAWT), OpenStreetMap road types (osm_type), speed limits, and lane counts.
+Github URL : https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated
+Automatic Download: Both the notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.
+🛠️ Models & Validation SummaryBaseline Model: Linear RegressionFinal Model: Random Forest Regressor (max_depth=10, min_samples_leaf=10, n_estimators=100)Evaluation Metric: Root Mean Squared Error (RMSE)Final Test Performance: Test RMSE of ~7,437
+🚀 Instructions on How to Run the Project1. Install DependenciesClone the repository and install the required packages:Bashpip install -r requirements.txt
 2. Train the Model (Optional)To re-run the training pipeline and generate a fresh model_paris_traffic.bin:Bashpython train.py
 3. Run the Flask Application LocallyStart the prediction server:Bashpython predict.py
 The server will run on http://localhost:9696.4. Test the Local EndpointIn a separate terminal, test a prediction request using PowerShell:PowerShell$body = @{
