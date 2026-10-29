@@ -7,7 +7,7 @@ Predicting urban traffic volume is crucial for city planning, reducing congestio
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 ```text
 ZoomcampMidtermproject/
 ├── notebook.ipynb            # Exploratory Data Analysis, feature engineering, and model tuning
@@ -19,7 +19,7 @@ ZoomcampMidtermproject/
 ├── deployment_screenshot.png # Evidence of local Docker deployment & interaction
 └── README.md                 # Project documentation
 ```
-## 📑 Table of Contents
+##  Table of Contents
 
 - [Dataset](#-dataset)
 - [Models & Validation](#-models--validation)
@@ -30,7 +30,7 @@ ZoomcampMidtermproject/
 
 ---
 
-## 📊 Dataset
+##  Dataset
 
 The project uses the **Paris treated traffic GeoJSON dataset (2023)** (`Paris_AADT_AAWT_2023.geojson`), sourced from the open-source [traffic-volume-data-EU-cities](https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated) repository maintained by [XavB64](https://github.com/XavB64).
 
@@ -58,7 +58,7 @@ The project uses the **Paris treated traffic GeoJSON dataset (2023)** (`Paris_AA
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Install dependencies
 
@@ -88,7 +88,7 @@ The server runs at **http://localhost:9696**.
 
 ---
 
-## 🧪 Testing the API
+##  Testing the API
 
 In a separate terminal, send a test prediction request using PowerShell:
 
@@ -117,7 +117,7 @@ Invoke-RestMethod -Uri "http://localhost:9696/predict" -Method Post -Body $body 
 
 ---
 
-## 🐳 Running with Docker
+##  Running with Docker
 
 Containerizing the app ensures a fully reproducible environment.
 
@@ -139,7 +139,7 @@ The API is then available at **http://localhost:9696**.
 
 ---
 
-## 📸 Deployment Proof
+##  Deployment Proof
 
 The screenshot below shows the Flask API running inside the Docker container and successfully responding to prediction requests:
 
@@ -148,7 +148,7 @@ The screenshot below shows the Flask API running inside the Docker container and
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Python** (scikit-learn, Flask)
 - **Jupyter Notebook** (EDA and experimentation)
