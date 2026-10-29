@@ -46,7 +46,7 @@ The project uses the **Paris treated traffic GeoJSON dataset (2023)** (`Paris_AA
 
 ---
 
-## 🤖 Models & Validation
+##  Models & Validation
 
 | Item | Details |
 |------|---------|
