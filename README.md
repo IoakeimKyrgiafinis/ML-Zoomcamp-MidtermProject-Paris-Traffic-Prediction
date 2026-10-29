@@ -19,10 +19,47 @@ ZoomcampMidtermproject/
 ├── deployment_screenshot.png # Evidence of local Docker deployment & interaction
 └── README.md                 # Project documentation
 ```
-📊 DatasetThe dataset used in this project is the Paris treated traffic GeoJSON dataset (2023) (Paris_AADT_AAWT_2023.geojson). It was sourced directly from the open-source GitHub repository traffic-volume-data-EU-cities maintained by XavB64.   Contents: Standardized street-segment traffic metrics for Paris, including Annual Average Daily Traffic (AADT), Annual Average Weekly Traffic (AAWT), OpenStreetMap road types (osm_type), speed limits, and lane counts.   GitHub URL: https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated   Automatic Download: Both notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.   🤖 Models & ValidationSummary Baseline Model: Linear Regression   Final Model: Random Forest Regressor (max_depth=10, min_samples_leaf=10, n_estimators=100)   Evaluation Metric: Root Mean Squared Error (RMSE)   Final Test Performance: Test RMSE of ~7,437   🚀 Instructions on How to Run the Project1. Install DependenciesClone the repository and install the required packages:   Bashpip install -r requirements.txt
-2. Train the Model (Optional)To re-run the training pipeline and generate a fresh model_paris_traffic.bin:   Bashpython train.py
-3. Run the Flask Application LocallyStart the prediction server:   Bashpython predict.py
-The server will run on http://localhost:9696.   Test the Local EndpointIn a separate terminal, test a prediction request using PowerShell:   PowerShell$body = @{
+📊Dataset
+The dataset used in this project is the Paris treated traffic GeoJSON dataset (2023) (Paris_AADT_AAWT_2023.geojson). It was sourced directly from the open-source GitHub repository traffic-volume-data-EU-cities maintained by XavB64.
+
+Contents: Standardized street-segment traffic metrics for Paris, including Annual Average Daily Traffic (AADT), Annual Average Weekly Traffic (AAWT), OpenStreetMap road types (osm_type), speed limits, and lane counts.
+
+GitHub URL: https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated
+
+Automatic Download: Both notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.
+
+🤖 Models & Validation
+Summary Baseline Model: Linear Regression
+
+Final Model: Random Forest Regressor (max_depth=10, min_samples_leaf=10, n_estimators=100)
+
+Evaluation Metric: Root Mean Squared Error (RMSE)
+
+Final Test Performance: Test RMSE of ~7,437
+
+🚀 Instructions on How to Run the Project
+1. Install Dependencies
+Clone the repository and install the required packages:
+
+Bash
+pip install -r requirements.txt
+2. Train the Model (Optional)
+To re-run the training pipeline and generate a fresh model_paris_traffic.bin:
+
+Bash
+python train.py
+3. Run the Flask Application Locally
+Start the prediction server:
+
+Bash
+python predict.py
+The server will run on http://localhost:9696.
+
+Test the Local Endpoint
+In a separate terminal, test a prediction request using PowerShell:
+
+PowerShell
+$body = @{
     raw_oneway = 1
     osm_oneway = 1
     osm_lanes = 3.0
@@ -42,6 +79,16 @@ The server will run on http://localhost:9696.   Test the Local EndpointIn a sepa
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri "http://localhost:9696/predict" -Method Post -Body $body -ContentType "application/json"
-🐳 Running with Docker (Deployment)To ensure complete environment reproducibility, you can containerize and run the application using Docker.   Build the Docker Image: Make sure Docker Desktop is running, then build the image:   Bashdocker build -t paris-traffic-model .
-Run the Container:Bashdocker run -it --rm -p 9696:9696 paris-traffic-model
-Deployment Interaction ProofHere is the interaction screenshot showing the Flask API running locally inside the Docker container and responding successfully to incoming prediction requests:
+🐳 Running with Docker (Deployment)
+To ensure complete environment reproducibility, you can containerize and run the application using Docker.
+
+Build the Docker Image: Make sure Docker Desktop is running, then build the image:
+
+Bash
+docker build -t paris-traffic-model .
+Run the Container:
+
+Bash
+docker run -it --rm -p 9696:9696 paris-traffic-model
+Deployment Interaction Proof
+Here is the interaction screenshot showing the Flask API running locally inside the Docker container and responding successfully to incoming prediction requests:
