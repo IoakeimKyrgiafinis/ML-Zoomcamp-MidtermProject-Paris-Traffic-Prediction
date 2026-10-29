@@ -19,76 +19,137 @@ ZoomcampMidtermproject/
 ├── deployment_screenshot.png # Evidence of local Docker deployment & interaction
 └── README.md                 # Project documentation
 ```
-📊Dataset
-The dataset used in this project is the Paris treated traffic GeoJSON dataset (2023) (Paris_AADT_AAWT_2023.geojson). It was sourced directly from the open-source GitHub repository traffic-volume-data-EU-cities maintained by XavB64.
+## 📑 Table of Contents
 
-Contents: Standardized street-segment traffic metrics for Paris, including Annual Average Daily Traffic (AADT), Annual Average Weekly Traffic (AAWT), OpenStreetMap road types (osm_type), speed limits, and lane counts.
+- [Dataset](#-dataset)
+- [Models & Validation](#-models--validation)
+- [Getting Started](#-getting-started)
+- [Testing the API](#-testing-the-api)
+- [Running with Docker](#-running-with-docker)
+- [Deployment Proof](#-deployment-proof)
 
-GitHub URL: https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated
+---
 
-Automatic Download: Both notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.
+## 📊 Dataset
 
-🤖 Models & Validation
-Summary Baseline Model: Linear Regression
+The project uses the **Paris treated traffic GeoJSON dataset (2023)** (`Paris_AADT_AAWT_2023.geojson`), sourced from the open-source [traffic-volume-data-EU-cities](https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated) repository maintained by [XavB64](https://github.com/XavB64).
 
-Final Model: Random Forest Regressor (max_depth=10, min_samples_leaf=10, n_estimators=100)
+**Contents:** standardized street-segment traffic metrics for Paris, including:
 
-Evaluation Metric: Root Mean Squared Error (RMSE)
+- **AADT**: Annual Average Daily Traffic
+- **AAWT**: Annual Average Weekly Traffic
+- **`osm_type`**: OpenStreetMap road type
+- **Speed limits**
+- **Lane counts**
 
-Final Test Performance: Test RMSE of ~7,437
+**Automatic download:** both `notebook.ipynb` and `train.py` pull the dataset directly from its raw GitHub link, so no manual download is needed.
 
-🚀 Instructions on How to Run the Project
-1. Install Dependencies
+---
+
+## 🤖 Models & Validation
+
+| Item | Details |
+|------|---------|
+| **Baseline model** | Linear Regression |
+| **Final model** | Random Forest Regressor |
+| **Hyperparameters** | `max_depth=10`, `min_samples_leaf=10`, `n_estimators=100` |
+| **Evaluation metric** | Root Mean Squared Error (RMSE) |
+| **Final test performance** | Test RMSE ≈ **7,437** |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
 Clone the repository and install the required packages:
 
-Bash
+```bash
 pip install -r requirements.txt
-2. Train the Model (Optional)
-To re-run the training pipeline and generate a fresh model_paris_traffic.bin:
+```
 
-Bash
+### 2. Train the model (optional)
+
+To re-run the training pipeline and generate a fresh `model_paris_traffic.bin`:
+
+```bash
 python train.py
-3. Run the Flask Application Locally
+```
+
+### 3. Run the Flask application locally
+
 Start the prediction server:
 
-Bash
+```bash
 python predict.py
-The server will run on http://localhost:9696.
+```
 
-Test the Local Endpoint
-In a separate terminal, test a prediction request using PowerShell:
+The server runs at **http://localhost:9696**.
 
-PowerShell
+---
+
+## 🧪 Testing the API
+
+In a separate terminal, send a test prediction request using PowerShell:
+
+```powershell
 $body = @{
-    raw_oneway = 1
-    osm_oneway = 1
-    osm_lanes = 3.0
-    osm_maxspeed = 30.0
-    osm_type_motorway = 0
-    osm_type_motorway_link = 0
-    osm_type_primary = 1
-    osm_type_primary_link = 0
-    osm_type_residential = 0
-    osm_type_secondary = 0
-    osm_type_secondary_link = 0
-    osm_type_tertiary = 0
-    osm_type_trunk = 0
-    osm_type_trunk_link = 0
-    osm_type_unclassified = 0
-    osm_type_unknown = 0
+    raw_oneway                = 1
+    osm_oneway                = 1
+    osm_lanes                 = 3.0
+    osm_maxspeed              = 30.0
+    osm_type_motorway         = 0
+    osm_type_motorway_link    = 0
+    osm_type_primary          = 1
+    osm_type_primary_link     = 0
+    osm_type_residential      = 0
+    osm_type_secondary        = 0
+    osm_type_secondary_link   = 0
+    osm_type_tertiary         = 0
+    osm_type_trunk            = 0
+    osm_type_trunk_link       = 0
+    osm_type_unclassified     = 0
+    osm_type_unknown          = 0
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri "http://localhost:9696/predict" -Method Post -Body $body -ContentType "application/json"
-🐳 Running with Docker (Deployment)
-To ensure complete environment reproducibility, you can containerize and run the application using Docker.
+```
 
-Build the Docker Image: Make sure Docker Desktop is running, then build the image:
+---
 
-Bash
+## 🐳 Running with Docker
+
+Containerizing the app ensures a fully reproducible environment.
+
+### Build the image
+
+Make sure Docker Desktop is running, then build the image:
+
+```bash
 docker build -t paris-traffic-model .
-Run the Container:
+```
 
-Bash
+### Run the container
+
+```bash
 docker run -it --rm -p 9696:9696 paris-traffic-model
-Deployment Interaction Proof
-Here is the interaction screenshot showing the Flask API running locally inside the Docker container and responding successfully to incoming prediction requests:
+```
+
+The API is then available at **http://localhost:9696**.
+
+---
+
+## 📸 Deployment Proof
+
+The screenshot below shows the Flask API running inside the Docker container and successfully responding to prediction requests:
+
+<!-- Replace with the path to your screenshot -->
+![Docker deployment screenshot](ML-Zoomcamp-MidtermProject-Paris-Traffic-Prediction/deployment_screenshot.png)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python** (scikit-learn, Flask)
+- **Jupyter Notebook** (EDA and experimentation)
+- **Docker** (deployment)
