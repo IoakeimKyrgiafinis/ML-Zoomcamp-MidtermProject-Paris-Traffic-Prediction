@@ -18,6 +18,7 @@ ZoomcampMidtermproject/
 ├── requirements.txt          # Python dependencies
 ├── deployment_screenshot.png # Evidence of local Docker deployment & interaction
 └── README.md                 # Project documentation
+```
 📊The dataset used in this project is the Paris treated traffic GeoJSON dataset (2023) (Paris_AADT_AAWT_2023.geojson).   It was sourced directly from the open-source GitHub repository traffic-volume-data-EU-cities maintained by XavB64. This dataset contains standardized street-segment traffic metrics for Paris, including Annual Average Daily Traffic (AADT), Annual Average Weekly Traffic (AAWT), OpenStreetMap road types (osm_type), speed limits, and lane counts.
 Github URL : https://github.com/XavB64/traffic-volume-data-EU-cities/tree/main/France/Paris/treated
 Automatic Download: Both the notebook.ipynb and train.py automatically pull this dataset via its raw GitHub link, so no manual downloading is required.
