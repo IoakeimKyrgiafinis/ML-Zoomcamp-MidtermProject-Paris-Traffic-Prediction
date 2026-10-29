@@ -144,7 +144,7 @@ The API is then available at **http://localhost:9696**.
 The screenshot below shows the Flask API running inside the Docker container and successfully responding to prediction requests:
 
 <!-- Replace with the path to your screenshot -->
-![Docker deployment screenshot](ML-Zoomcamp-MidtermProject-Paris-Traffic-Prediction/deployment_screenshot.png)
+![Docker deployment screenshot](deployment_screenshot.png)
 
 ---
 
